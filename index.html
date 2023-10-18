@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Face Detection</title>
-    <script src="pico.js"></script>
-    <script src="index.js"></script>
+    <title>Face Recognition App</title>
+    <script src="/face-api.min.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
-    <video id="video" width="640" height="480" autoplay></video>
+    <h1>Face Recognition App</h1>
+    <video id="video" muted autoplay></video>
+    <canvas id="canvas"></canvas>
+    <div id="message"></div>
 </body>
 </html>
