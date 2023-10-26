@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Using pico.js and lploc.js for real-time localization of eye pupils</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <script src="camvas.js"></script>
+    <script src="../pico.js"></script>
+    <script src="../lploc.js"></script>
+    <script src="/button.js"></script>
+		<script src="/language.js"></script>
+    <script src="/theme.js"></script>
+</head>
+<body class="light-theme">
+    <button id="theme-toggle">Сменить тему</button>
+		<button id="lang-toggle">Сменить язык</button>
+    <p><center><input id="webcam" type="button" value="Запуск веб-камеры" onclick="button_callback()"></center></p>
+    <p><center><canvas width=640 height=480></canvas></center></p>
+</body>
+</html>
