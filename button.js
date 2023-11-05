@@ -1,16 +1,16 @@
 let initialized = false;
-let circleRadius = 150; // Увеличьте радиус круга
+let circleRadius = 120; // Увеличьте радиус круга
 let faceData = [];
 let takingPhoto = false; // Флаг, чтобы отслеживать, нужно ли делать фото
 let photoCount = 0; // Счетчик сделанных фотографий
 
 function button_callback() {
   const screenshotsContainer = document.getElementById('screenshotsContainer');
+  const textOverlay = document.getElementById('text-overlay');
   /*
     (0) check whether we're already running face detection
   */
   if (initialized) return; // if yes, then do not initialize everything again
-
   /*
     (1) initialize the pico.js face detector
   */
@@ -76,6 +76,7 @@ function button_callback() {
     (4) this function is called each time a video frame becomes available
   */
   let processfn = function (video, dt) {
+    let currentLanguage = localStorage.getItem('language') || 'RU';
     // render the video frame to the canvas element and extract RGBA pixel data
     ctx.drawImage(video, 0, 0);
 
@@ -159,13 +160,28 @@ function button_callback() {
 
             const screenshotDataUrl = screenshotCanvas.toDataURL('image/png');
             faceData.push(screenshotDataUrl);
-            circleRadius = 120; // Уменьшаем радиус
+            circleRadius = 80; // Уменьшаем радиус
             takingPhoto = true;
             photoCount++; // Увеличиваем счетчик фотографий
             console.log(`Сделана фотография ${photoCount}`);
           }
         } else {
           takingPhoto = false; // Восстановить флаг, если лицо не внутри круга
+        }
+        if (dets[i][2] > circleRadius) {
+          // Если радиус лица больше радиуса круга
+          if(currentLanguage === 'RU') {
+            textOverlay.textContent = 'Лицо дальше'; // Отображаем текст над видео
+          } else {
+            textOverlay.textContent = 'Face further'; // Отображаем текст над видео
+
+          }
+        } else {
+          if(currentLanguage === 'RU') {
+            textOverlay.textContent = 'Лицо ближе';
+          } else {
+            textOverlay.textContent = 'Face closer';
+          }
         }
         if (photoCount === 2) {
           faceData.forEach((dataUrl, index) => {

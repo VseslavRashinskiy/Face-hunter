@@ -15,19 +15,29 @@ document.addEventListener('DOMContentLoaded', function() {
     webcam: 'Start webcam',
   };
 
-  let isRussian = true;
+  let currentLanguage = localStorage.getItem('language') || 'RU';
 
-  function toggleLanguage() {
-    if (isRussian) {
-      langToggle.textContent = englishText.buttonText;
-      themeToggle.textContent = englishText.theme;
-      webcamButton.value = englishText.webcam;
-    } else {
+  function updateText() {
+    if (currentLanguage === 'RU') {
       langToggle.textContent = russianText.buttonText;
       themeToggle.textContent = russianText.theme;
       webcamButton.value = russianText.webcam;
+    } else {
+      langToggle.textContent = englishText.buttonText;
+      themeToggle.textContent = englishText.theme;
+      webcamButton.value = englishText.webcam;
     }
-    isRussian = !isRussian;
+  }
+
+  updateText();
+
+  function toggleLanguage() {
+    // Меняем текущий язык и обновляем Local Storage
+    currentLanguage = currentLanguage === 'RU' ? 'EN' : 'RU';
+    localStorage.setItem('language', currentLanguage);
+
+    // Вызываем функцию для обновления текста
+    updateText();
   }
 
   langToggle.addEventListener('click', toggleLanguage);
