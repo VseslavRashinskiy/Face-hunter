@@ -1,0 +1,19 @@
+{
+  "name": "face-hunter",
+  "version": "1.0.0",
+  "description": "Face ",
+  "main": "button.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VseslavRashinskiy/Test.git"
+  },
+  "author": "Vseslav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VseslavRashinskiy/Test/issues"
+  },
+  "homepage": "https://github.com/VseslavRashinskiy/Test#readme"
+}

@@ -107,42 +107,6 @@ function button_callback() {
     // Draw the dynamic oval (for face detection)
     for (i = 0; i < dets.length; ++i) {
       if (dets[i][3] > 50.0) {
-        let r, c, s;
-        //
-        ctx.beginPath();
-        ctx.arc(dets[i][1], dets[i][0], dets[i][2] / 2, 0, 2 * Math.PI, false);
-        ctx.lineWidth = 3;
-        ctx.strokeStyle = 'red';
-        ctx.stroke();
-        //
-        // find the eye pupils for each detected face
-        // starting regions for localization are initialized based on the face bounding box
-        // (parameters are set empirically)
-        // first eye
-        r = dets[i][0] - 0.075 * dets[i][2];
-        c = dets[i][1] - 0.175 * dets[i][2];
-        s = 0.35 * dets[i][2];
-        [r, c] = do_puploc(r, c, s, 63, image);
-        if (r >= 0 && c >= 0) {
-          ctx.beginPath();
-          ctx.arc(c, r, 1, 0, 2 * Math.PI, false);
-          ctx.lineWidth = 3;
-          ctx.strokeStyle = 'red';
-          ctx.stroke();
-        }
-        // second eye
-        r = dets[i][0] - 0.075 * dets[i][2];
-        c = dets[i][1] + 0.175 * dets[i][2];
-        s = 0.35 * dets[i][2];
-        [r, c] = do_puploc(r, c, s, 63, image);
-        if (r >= 0 && c >= 0) {
-          ctx.beginPath();
-          ctx.arc(c, r, 1, 0, 2 * Math.PI, false);
-          ctx.lineWidth = 3;
-          ctx.strokeStyle = 'red';
-          ctx.stroke();
-        }
-
         if (
           dets[i][2] / 2 < circleRadius &&
           dets[i][1] + dets[i][2] / 2 < canvas.width / 2 + circleRadius &&
