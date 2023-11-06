@@ -1,8 +1,8 @@
 let initialized = false;
-let circleRadius = 120; // Увеличьте радиус круга
+let circleRadius = 120; // Increase the circle radius
 let faceData = [];
-let takingPhoto = false; // Флаг, чтобы отслеживать, нужно ли делать фото
-let photoCount = 0; // Счетчик сделанных фотографий
+let takingPhoto = false; // Flag to keep track of whether or not a photo needs to be taken
+let photoCount = 0; // Counter of photos taken
 
 function button_callback() {
   const screenshotsContainer = document.getElementById('screenshotsContainer');
@@ -114,7 +114,7 @@ function button_callback() {
           dets[i][0] + dets[i][2] / 2 < canvas.height / 2 + circleRadius &&
           dets[i][0] - dets[i][2] / 2 > canvas.height / 2 - circleRadius
         ) {
-          // Если лицо внутри круга и можно фотографировать
+          // If the face is inside the circle and can be photographed
           if (!takingPhoto && photoCount < 2) {
             const screenshotCanvas = document.createElement('canvas');
             screenshotCanvas.width = canvas.width;
@@ -124,20 +124,20 @@ function button_callback() {
 
             const screenshotDataUrl = screenshotCanvas.toDataURL('image/png');
             faceData.push(screenshotDataUrl);
-            circleRadius = 80; // Уменьшаем радиус
+            circleRadius = 80; // Reducing the radius
             takingPhoto = true;
-            photoCount++; // Увеличиваем счетчик фотографий
+            photoCount++; // Increase the photo count
             console.log(`Сделана фотография ${photoCount}`);
           }
         } else {
-          takingPhoto = false; // Восстановить флаг, если лицо не внутри круга
+          takingPhoto = false; // Restore the flag if the face is not inside the circle
         }
         if (dets[i][2] > circleRadius) {
-          // Если радиус лица больше радиуса круга
+          // If the radius of the face is greater than the radius of the circle
           if(currentLanguage === 'RU') {
-            textOverlay.textContent = 'Лицо дальше'; // Отображаем текст над видео
+            textOverlay.textContent = 'Лицо дальше'; // Display text over video
           } else {
-            textOverlay.textContent = 'Face further'; // Отображаем текст над видео
+            textOverlay.textContent = 'Face further'; // Display text over video
 
           }
         } else {
@@ -155,7 +155,7 @@ function button_callback() {
             screenshotsContainer.appendChild(image);
           });
           circleRadius = 150;
-          photoCount = 0; // Сбросить счетчик
+          photoCount = 0; // Reset counter
         }
       }
     }

@@ -32,11 +32,9 @@ document.addEventListener('DOMContentLoaded', function() {
   updateText();
 
   function toggleLanguage() {
-    // Меняем текущий язык и обновляем Local Storage
     currentLanguage = currentLanguage === 'RU' ? 'EN' : 'RU';
     localStorage.setItem('language', currentLanguage);
 
-    // Вызываем функцию для обновления текста
     updateText();
   }
 
